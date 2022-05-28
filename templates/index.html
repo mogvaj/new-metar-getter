@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}METAR Getter{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <div class="d-none" id="hiddenInfo">
+  </div>
+  
+  <h1>METAR Getter</h1>
+  <hr>
+    <form name="icaoCodeForm" action="" method="get">
+      Enter an ICAO airport code:
+        <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()" value="KPIH" />
+      <br>
+      <button type="button" class="btn btn-secondary mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
+    </form>
+    <hr>
+
+{% endblock %}
+{% block scripts %}
+  <script>
+  </script>
+{% endblock %}
