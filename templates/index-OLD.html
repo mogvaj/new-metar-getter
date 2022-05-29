@@ -7,33 +7,15 @@
 <div class="d-none" id="hiddenInfo">
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>METAR Getter</h1>
-      <hr>
-    </div>
-  </div>
-
-  <form name="icaoCodeForm" action="" method="get">
-    <div class="row">
-      <div class="col">
-        <h2>Enter an ICAO airport code:</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()" value="{{info.icaoCode}}" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-success mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
-      </div>
-    </div>
-  </form>
-  <hr>
-</div>
+<h1>METAR Getter</h1>
+<hr>
+<form name="icaoCodeForm" action="" method="get">
+  <h2>Enter an ICAO airport code:</h2>
+  <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()" value="{{info.icaoCode}}" />
+  <br>
+  <button type="button" class="btn btn-success mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
+</form>
+<hr>
 
 {% endblock %}
 {% block scripts %}
