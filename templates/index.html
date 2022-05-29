@@ -10,8 +10,8 @@
 <h1>METAR Getter</h1>
 <hr>
 <form name="icaoCodeForm" action="" method="get">
-  Enter an ICAO airport code:
-  <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()" value="{{info.infoForIndexPage}}" />
+  <h2>Enter an ICAO airport code:</h2>
+  <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()" value="{{info.icaoCode}}" />
   <br>
   <button type="button" class="btn btn-success mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
 </form>
