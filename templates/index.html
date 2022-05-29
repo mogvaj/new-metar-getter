@@ -11,8 +11,7 @@
 <hr>
 <form name="icaoCodeForm" action="" method="get">
   Enter an ICAO airport code:
-  <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()"
-    value="KPIH" />
+  <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()" value="{{info.infoForIndexPage}}" />
   <br>
   <button type="button" class="btn btn-success mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
 </form>
