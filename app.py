@@ -11,8 +11,22 @@ def index():
 @app.route("/getMetar/<anIcaoCode>")
 def getMetar(anIcaoCode: str):
     metarResponse = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
+    
     currentTime = datetime.now(timezone.utc)
-    metarFormatTime = f"{currentTime.day}{currentTime.hour}{currentTime.minute}Z"
+    
+    currentDay = currentTime.day
+    if len(currentDay) < 2:
+        currentDay = f"0{currentDay}"
+
+    currentHour = currentTime.hour
+    if len(currentHour) < 2:
+        currentHour = f"0{currentHour}"
+
+    currentMinute = currentTime.minute
+    if len(currentMinute) < 2:
+        currentMinute = f"0{currentMinute}"
+
+    metarFormatTime = f"{currentDay}{currentHour}{currentMinute}Z"
 
     infoForShowMetarPage = {
         "metarText": metarResponse.text,
