@@ -25,6 +25,8 @@
     var icaoCodeValue = icaoCodeInput.value;
     var getMetarButton = document.getElementById("getMetarButton");
     
+    icaoCodeInput.value = icaoCodeInput.value.uppercase();
+
     var removalClasses = [ "btn-success" ];
     var additionClasses = [ "btn-secondary" ];
     if (icaoCodeValue.length > 2) {
@@ -49,5 +51,12 @@
   function getMetar() {
     window.location = "/getMetar/" + document.getElementById("icaoCodeInput").value.trim();
   }
+
+  // Runs first
+  $(document).ready(function() {
+    var icaoCodeInput = document.getElementById("icaoCodeInput");
+    icaoCodeInput.focus();
+    icaoCodeInput.select();
+  });
 </script>
 {% endblock %}
