@@ -5,23 +5,6 @@
 {% endblock %}
 {% block content %}
 <div class="d-none" id="hiddenInfo">
-  {% if info.metarText: %}
-    <input type="text" class="d-none" id="metarText" value="{{info.metarText}}" />
-  {% else %}
-    <input type="text" class="d-none" id="metarText" value="METAR not retrieved" />
-  {% endif %}
-
-  {% if info.timeSearched: %}
-    <input type="text" class="d-none" id="metarText" value="{{info.timeSearched}}" />
-  {% else %}
-    <input type="text" class="d-none" id="timeSearched" value="Time searched not known" />
-  {% endif %}
-
-  {% if info.icaoCode: %}
-    <input type="text" class="d-none" id="icaoCode" value="{{info.icaoCode}}" />
-  {% else %}
-    <input type="text" class="d-none" id="icaoCode" value="ICAO code not known" />
-  {% endif %}
 </div>
 
 <h1>METAR Response for {{info.icaoCode}}</h1>
@@ -32,14 +15,11 @@
 <h2>METAR Text:</h2>
 <h3>{{info.metarText}}</h3>
 <hr>
-<button class="btn btn-primary" onclick="getMetar()">Refresh</button>
+<button class="btn btn-primary" onclick="window.location='/getMetar/{{info.icaoCode}}'">Refresh</button>
 <button class="btn btn-primary" onclick="window.location='/'">Get another METAR</button>
 
 {% endblock %}
 {% block scripts %}
 <script>
-  function getMetar() {
-    window.location = "getMetar/{{info.icaoCode}}";
-  }
 </script>
 {% endblock %}

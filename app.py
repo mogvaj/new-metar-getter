@@ -34,5 +34,4 @@ def getMetar(anIcaoCode: str):
         "icaoCode": anIcaoCode.strip().upper()
     }
 
-    # return f"<h1>You searched for {anIcaoCode}</h1><br>Response: {metarResponse.text}"
     return render_template('showMetar.html', info=infoForShowMetarPage)
