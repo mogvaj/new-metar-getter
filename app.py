@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 import requests
-import json
+import datetime
 
 app = Flask(__name__)
 
@@ -12,4 +12,11 @@ def index():
 def getMetar(anIcaoCode: str):
     metarResponse = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
 
-    return f"<h1>You searched for {anIcaoCode}</h1><br>Response: {metarResponse.text}"
+    infoForShowMetarPage = {
+        "metarText": metarResponse.text,
+        "timeSearched": datetime.now(timezone.utc),
+        "icaoCode": anIcaoCode.trim().upper()
+    }
+
+    # return f"<h1>You searched for {anIcaoCode}</h1><br>Response: {metarResponse.text}"
+    return render_template('showMetar.html', info=infoForShowMetarPage)
