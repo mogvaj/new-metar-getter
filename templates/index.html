@@ -48,7 +48,7 @@
   }
 
   function getMetar() {
-    window.location = "{{url_for('/', filename='getMetar')}}/" + document.getElementById("icaoCodeInput").value.trim();
+    window.location = "{{url_for('getMetar')}}/" + document.getElementById("icaoCodeInput").value.trim();
   }
 </script>
 {% endblock %}
