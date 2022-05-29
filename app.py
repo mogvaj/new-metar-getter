@@ -10,6 +10,6 @@ def index():
 
 @app.route("/getMetar/<anIcaoCode>")
 def getMetar(anIcaoCode: str):
-    print (f"Starting getMetar() with an argument of {anIcaoCode}")
+    metarText = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
 
-    return f"<h1>You searched for {anIcaoCode}</h1>"
+    return f"<h1>You searched for {anIcaoCode}</h1><br>Response: {metarText}"
