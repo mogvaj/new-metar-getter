@@ -14,7 +14,7 @@
   <input type="text" id="icaoCodeInput" name="icaoCodeInput" class="form-control" oninput="updateButton()"
     value="KPIH" />
   <br>
-  <button type="button" class="btn btn-secondary mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
+  <button type="button" class="btn btn-success mt-2" id="getMetarButton" onclick="getMetar()">Get METAR</button>
 </form>
 <hr>
 
@@ -45,6 +45,10 @@
     for (var i = 0; i < additionClasses.length; i++) {
       getMetarButton.classList.add(additionClasses[i]);
     }
+  }
+
+  function getMetar() {
+    window.location = "{{url_for('/', filename='getMetar')}}/" + document.getElementById("icaoCodeInput").value.trim();
   }
 </script>
 {% endblock %}
