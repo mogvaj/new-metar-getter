@@ -15,15 +15,15 @@ def getMetar(anIcaoCode: str):
     currentTime = datetime.now(timezone.utc)
     
     currentDay = currentTime.day
-    if len(currentDay) < 2:
+    if currentDay < 10:
         currentDay = f"0{currentDay}"
 
     currentHour = currentTime.hour
-    if len(currentHour) < 2:
+    if currentHour < 10:
         currentHour = f"0{currentHour}"
 
     currentMinute = currentTime.minute
-    if len(currentMinute) < 2:
+    if currentMinute < 10:
         currentMinute = f"0{currentMinute}"
 
     metarFormatTime = f"{currentDay}{currentHour}{currentMinute}Z"
