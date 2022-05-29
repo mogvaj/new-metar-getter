@@ -22,10 +22,10 @@
 <script>
   function updateButton() {
     var icaoCodeInput = document.getElementById("icaoCodeInput");
+    icaoCodeInput.value = icaoCodeInput.value.uppercase();
+
     var icaoCodeValue = icaoCodeInput.value;
     var getMetarButton = document.getElementById("getMetarButton");
-    
-    icaoCodeInput.value = icaoCodeInput.value.uppercase();
 
     var removalClasses = [ "btn-success" ];
     var additionClasses = [ "btn-secondary" ];
