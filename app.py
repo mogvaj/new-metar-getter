@@ -5,8 +5,13 @@ from datetime import datetime, timezone
 app = Flask(__name__)
 
 @app.route("/")
-def index():
-    return render_template('index.html')
+@app.route("/index/<anIcaoCode>")
+def index(anIcaoCode: str = "KPIH"):
+    infoForIndexPage = {
+        "icaoCode": anIcaoCode
+    }
+
+    return render_template('index.html', info=infoForIndexPage)
 
 @app.route("/getMetar/<anIcaoCode>")
 def getMetar(anIcaoCode: str):

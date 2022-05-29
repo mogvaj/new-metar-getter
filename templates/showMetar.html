@@ -16,7 +16,7 @@
 <h3>{{info.metarText}}</h3>
 <hr>
 <button class="btn btn-primary" onclick="window.location='/getMetar/{{info.icaoCode}}'">Refresh</button>
-<button class="btn btn-primary" onclick="window.location='/'">Get another METAR</button>
+<button class="btn btn-primary" onclick="window.location='/index/{{info.icaoCode}}'">Get another METAR</button>
 
 {% endblock %}
 {% block scripts %}
