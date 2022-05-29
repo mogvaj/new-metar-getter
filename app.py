@@ -8,6 +8,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route("getMetar", methods=['GET'])
+@app.route("/getMetar", methods=['GET'])
 def getMetar(anIcaoCode):
     return f"<h1>You searched for {getMetar}</h1>"
