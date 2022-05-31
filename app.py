@@ -18,7 +18,18 @@ def getMetar(anIcaoCode: str):
     metarResponse = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
     
     currentTime = datetime.now(timezone.utc)
-    
+
+    metarTimeString = metarResponse.split()[1].replace('Z', '')
+    metarYear = currentTime.year
+    metarMonth = currentTime.month
+    metarDay = int(metarTimeString[0:2])
+    metarHour = int(metarTimeString[2:4])
+    metarMinute = int(metarTimeString[4:])
+
+    metarTime = datetime(metarYear, metarMonth, metarDay, metarHour, metarMinute, 0, 0, timezone.utc)
+
+    metarAge = currentTime - metarTime
+
     currentDay = currentTime.day
     if currentDay < 10:
         currentDay = f"0{currentDay}"
@@ -36,6 +47,7 @@ def getMetar(anIcaoCode: str):
     infoForShowMetarPage = {
         "metarText": metarResponse.text,
         "timeSearched": metarFormatTime,
+        "metarAge": metarAge,
         "icaoCode": anIcaoCode.strip().upper()
     }
 
