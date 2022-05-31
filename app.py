@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import requests
 from datetime import datetime, timezone, timedelta
+import json
 
 app = Flask(__name__)
 
@@ -43,8 +44,9 @@ def getMetar(anIcaoCode: str):
     metarAge = currentTime - metarTime
 
     airportInfo = requests.get("https://airport-data.com/api/ap_info.json?icao=" + anIcaoCode)
-    airportName = airportInfo.name
-    airportLocation = airportInfo.location
+    airportJson = json.loads(airportInfo.text)
+    airportName = airportJson.name
+    airportLocation = airportJson.location
 
     infoForShowMetarPage = {
         "airportName": airportName,
