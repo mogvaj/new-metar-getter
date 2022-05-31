@@ -13,7 +13,7 @@
 <h3>{{info.timeSearched}}</h3>
 <hr>
 <h2>METAR Text (Age: {{info.metarAge}} minutes):</h2>
-<h3>{{info.metarText}}</h3>
+<h3><code>{{info.metarText}}</code></h3>
 <hr>
 <button class="btn btn-primary" onclick="window.location='/getMetar/{{info.icaoCode}}'">Refresh</button>
 <button class="btn btn-primary" onclick="window.location='/index/{{info.icaoCode}}'">Get another METAR</button>

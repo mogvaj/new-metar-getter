@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 import requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 app = Flask(__name__)
 
@@ -47,7 +47,7 @@ def getMetar(anIcaoCode: str):
     infoForShowMetarPage = {
         "metarText": metarResponse.text,
         "timeSearched": metarFormatTime,
-        "metarAge": metarAge.minutes,
+        "metarAge": int(metarAge.total_seconds() / 60),
         "icaoCode": anIcaoCode.strip().upper()
     }
 
