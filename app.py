@@ -45,9 +45,9 @@ def getMetar(anIcaoCode: str):
 
     airportInfo = requests.get("https://airport-data.com/api/ap_info.json?icao=" + anIcaoCode)
     airportJson = json.loads(airportInfo.text)
-    # airportName = airportJson.name
+    airportName = airportJson['name']
     # airportLocation = airportJson.location
-    airportName = airportInfo.text
+    # airportName = airportInfo.text
     airportLocation = "Check other field"
 
     infoForShowMetarPage = {
