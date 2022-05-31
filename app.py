@@ -17,18 +17,16 @@ def index(anIcaoCode: str = "KPIH"):
 def getMetar(anIcaoCode: str):
     metarResponse = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
     
-    currentTime = datetime.now(timezone.utc)
-
     metarTimeString = metarResponse.text.split()[1].replace('Z', '')
     metarYear = currentTime.year
     metarMonth = currentTime.month
     metarDay = int(metarTimeString[0:2])
     metarHour = int(metarTimeString[2:4])
     metarMinute = int(metarTimeString[4:])
-
     metarTime = datetime(metarYear, metarMonth, metarDay, metarHour, metarMinute, 0, 0, timezone.utc)
-
     metarAge = currentTime - metarTime
+
+    currentTime = datetime.now(timezone.utc)
 
     currentDay = currentTime.day
     if currentDay < 10:
@@ -44,7 +42,13 @@ def getMetar(anIcaoCode: str):
 
     metarFormatTime = f"{currentDay}{currentHour}{currentMinute}Z"
 
+    airportInfo = requests.get("https://airport-data.com/api/ap_info.json?icao=" + anIcaoCode)
+    airportName = airportInfo.name
+    airportLocation = airportInfo.location
+
     infoForShowMetarPage = {
+        "airportName": airportName,
+        "airportLocation": airportLocation,
         "metarText": metarResponse.text,
         "timeSearched": metarFormatTime,
         "metarAge": int(metarAge.total_seconds() / 60),
