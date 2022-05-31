@@ -19,7 +19,7 @@ def getMetar(anIcaoCode: str):
     
     currentTime = datetime.now(timezone.utc)
 
-    metarTimeString = metarResponse.split()[1].replace('Z', '')
+    metarTimeString = metarResponse.text.split()[1].replace('Z', '')
     metarYear = currentTime.year
     metarMonth = currentTime.month
     metarDay = int(metarTimeString[0:2])
