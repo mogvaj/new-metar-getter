@@ -47,7 +47,7 @@ def getMetar(anIcaoCode: str):
     infoForShowMetarPage = {
         "metarText": metarResponse.text,
         "timeSearched": metarFormatTime,
-        "metarAge": metarAge,
+        "metarAge": metarAge.minutes,
         "icaoCode": anIcaoCode.strip().upper()
     }
 
