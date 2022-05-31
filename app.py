@@ -15,17 +15,6 @@ def index(anIcaoCode: str = "KPIH"):
 
 @app.route("/getMetar/<anIcaoCode>")
 def getMetar(anIcaoCode: str):
-    metarResponse = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
-    
-    metarTimeString = metarResponse.text.split()[1].replace('Z', '')
-    metarYear = currentTime.year
-    metarMonth = currentTime.month
-    metarDay = int(metarTimeString[0:2])
-    metarHour = int(metarTimeString[2:4])
-    metarMinute = int(metarTimeString[4:])
-    metarTime = datetime(metarYear, metarMonth, metarDay, metarHour, metarMinute, 0, 0, timezone.utc)
-    metarAge = currentTime - metarTime
-
     currentTime = datetime.now(timezone.utc)
 
     currentDay = currentTime.day
@@ -41,6 +30,17 @@ def getMetar(anIcaoCode: str):
         currentMinute = f"0{currentMinute}"
 
     metarFormatTime = f"{currentDay}{currentHour}{currentMinute}Z"
+
+    metarResponse = requests.get("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + anIcaoCode)
+    
+    metarTimeString = metarResponse.text.split()[1].replace('Z', '')
+    metarYear = currentTime.year
+    metarMonth = currentTime.month
+    metarDay = int(metarTimeString[0:2])
+    metarHour = int(metarTimeString[2:4])
+    metarMinute = int(metarTimeString[4:])
+    metarTime = datetime(metarYear, metarMonth, metarDay, metarHour, metarMinute, 0, 0, timezone.utc)
+    metarAge = currentTime - metarTime
 
     airportInfo = requests.get("https://airport-data.com/api/ap_info.json?icao=" + anIcaoCode)
     airportName = airportInfo.name
