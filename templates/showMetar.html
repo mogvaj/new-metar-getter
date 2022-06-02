@@ -12,7 +12,7 @@
 <h5>{{info.airportLocation}}</h5>
 <hr>
 <h2>Time of Request:</h2>
-<h3>{{info.timeSearched}}</h3>
+<h3>{{info.timeSearched}}<span id="localTimeSpan"></span></h3>
 <hr>
 <h2>METAR Text (Age: {{info.metarAge}} minutes):</h2>
 <h3><code>{{info.metarText}}</code></h3>
@@ -23,5 +23,25 @@
 {% endblock %}
 {% block scripts %}
 <script>
+  $(document).ready(function () {
+    var now = new Date();
+
+    var currentDay = now.getDate();
+    if (currentDay < 10) {
+      currentDay = "0" + currentDay;
+    }
+
+    var currentHour = now.getHours();
+    if (currentHour < 10) {
+      currentHour = "0" + currentHour;
+    }
+
+    var currentMinute = now.getMinutes();
+    if (currentMinute < 10) {
+      currentMinute = "0" + currentMinute;
+    }
+
+    document.getElementById("localTimeSpan").innerHTML = " - " + String(currentDay) + String(currentHour) + String(currentMinute) + " Local";
+  });
 </script>
 {% endblock %}
